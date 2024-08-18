@@ -2,14 +2,21 @@
   "name": "tree-sitter-reason",
   "version": "1.0.0",
   "description": "Tree-sitter reason grammar",
-  "main": "index.js",
+  "main": "bindings/node",
   "types": "bindings/node",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "gyp:build": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip",
+    "gen": "tree-sitter generate --no-bindings",
+    "build": "tree-sitter build",
+    "parse": "tree-sitter parse",
+    "debug": "tree-sitter parse --debug",
+    "test": "tree-sitter test"
   },
-  "author": "teej_dv",
+  "authors": [
+    "teej_dv"
+  ],
   "license": "ISC",
   "tree-sitter": [
     {
@@ -31,7 +38,8 @@
     }
   },
   "devDependencies": {
-    "prebuildify": "^6.0.0"
+    "prebuildify": "^6.0.0",
+    "tree-sitter-cli": "^0.22.6"
   },
   "prettier": {
     "trailingComma": "all"

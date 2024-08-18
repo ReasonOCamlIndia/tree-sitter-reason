@@ -1,4 +1,9 @@
 {
+  "0": "o",
+  "1": "c",
+  "2": "a",
+  "3": "m",
+  "4": "l",
   "name": "reason",
   "word": "_identifier",
   "rules": {
@@ -10383,8 +10388,11 @@
           "value": "=>"
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
         }
       ]
     },

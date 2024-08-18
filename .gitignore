@@ -3,3 +3,5 @@ build/
 parser/
 reason.so
 scratch/
+log.html
+*.re
