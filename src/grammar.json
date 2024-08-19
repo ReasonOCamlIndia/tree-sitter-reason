@@ -4421,10 +4421,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "local_open_expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "application_expression"
         },
         {
@@ -4439,6 +4435,10 @@
         {
           "type": "SYMBOL",
           "name": "_simple_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "exp_open"
         },
         {
           "type": "SYMBOL",
@@ -10303,6 +10303,31 @@
               "value": ")"
             }
           ]
+        }
+      ]
+    },
+    "exp_open": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "module_path"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

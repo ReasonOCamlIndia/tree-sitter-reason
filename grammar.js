@@ -116,9 +116,12 @@ module.exports = grammar(require("./embedded/ocaml"), {
     expression: ($) =>
       choice($._expression, seq("(", $.expression, ":", $._type, ")")),
 
+    exp_open: ($) => seq($.module_path, ".", "(", $.expression, ")"),
+
     _expression: ($) =>
       choice(
         $._simple_expression,
+        $.exp_open,
         $.sign_expression,
         // $.set_expression,
         $.if_expression,
@@ -161,7 +164,6 @@ module.exports = grammar(require("./embedded/ocaml"), {
         // $.string_get_expression,
         // $.bigarray_get_expression,
         // $.coercion_expression,
-        $.local_open_expression,
         // $.package_expression,
         // $.new_expression,
         // $.object_copy_expression,
@@ -180,6 +182,8 @@ module.exports = grammar(require("./embedded/ocaml"), {
       seq("switch", "(", $.expression, ")", "{", repeat($._switch_case), "}"),
 
     _switch_case: ($) => seq("|", $._pattern, "=>", $.expression),
+    // _switch_case: ($) =>
+    //   seq("|", $._pattern, "=>", choice($.block, repeat1($._statement))),
 
     _simple_pattern: ($) =>
       choice(

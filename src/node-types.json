@@ -236,6 +236,10 @@
         "named": true
       },
       {
+        "type": "exp_open",
+        "named": true
+      },
+      {
         "type": "function_expression",
         "named": true
       },
@@ -581,10 +585,6 @@
       },
       {
         "type": "list_expression",
-        "named": true
-      },
-      {
-        "type": "local_open_expression",
         "named": true
       },
       {
@@ -1609,6 +1609,25 @@
         },
         {
           "type": "item_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "exp_open",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "module_path",
           "named": true
         }
       ]
@@ -2713,45 +2732,6 @@
         },
         {
           "type": "_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "local_open_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_sequence_expression",
-          "named": true
-        },
-        {
-          "type": "array_expression",
-          "named": true
-        },
-        {
-          "type": "list_expression",
-          "named": true
-        },
-        {
-          "type": "module_path",
-          "named": true
-        },
-        {
-          "type": "object_copy_expression",
-          "named": true
-        },
-        {
-          "type": "package_expression",
-          "named": true
-        },
-        {
-          "type": "record_expression",
           "named": true
         }
       ]
