@@ -236,19 +236,11 @@
         "named": true
       },
       {
-        "type": "application_expression",
-        "named": true
-      },
-      {
         "type": "function_expression",
         "named": true
       },
       {
         "type": "if_expression",
-        "named": true
-      },
-      {
-        "type": "infix_expression",
         "named": true
       },
       {
@@ -564,6 +556,10 @@
         "named": true
       },
       {
+        "type": "application_expression",
+        "named": true
+      },
+      {
         "type": "array_expression",
         "named": true
       },
@@ -580,7 +576,15 @@
         "named": true
       },
       {
+        "type": "infix_expression",
+        "named": true
+      },
+      {
         "type": "list_expression",
+        "named": true
+      },
+      {
+        "type": "local_open_expression",
         "named": true
       },
       {
@@ -2709,6 +2713,45 @@
         },
         {
           "type": "_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "local_open_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_sequence_expression",
+          "named": true
+        },
+        {
+          "type": "array_expression",
+          "named": true
+        },
+        {
+          "type": "list_expression",
+          "named": true
+        },
+        {
+          "type": "module_path",
+          "named": true
+        },
+        {
+          "type": "object_copy_expression",
+          "named": true
+        },
+        {
+          "type": "package_expression",
+          "named": true
+        },
+        {
+          "type": "record_expression",
           "named": true
         }
       ]

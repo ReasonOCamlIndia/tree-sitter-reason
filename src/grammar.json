@@ -4418,6 +4418,18 @@
         {
           "type": "SYMBOL",
           "name": "array_get_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "local_open_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "application_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "infix_expression"
         }
       ]
     },
@@ -4427,14 +4439,6 @@
         {
           "type": "SYMBOL",
           "name": "_simple_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "application_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "infix_expression"
         },
         {
           "type": "SYMBOL",

@@ -119,8 +119,6 @@ module.exports = grammar(require("./embedded/ocaml"), {
     _expression: ($) =>
       choice(
         $._simple_expression,
-        $.application_expression,
-        $.infix_expression,
         $.sign_expression,
         // $.set_expression,
         $.if_expression,
@@ -163,13 +161,14 @@ module.exports = grammar(require("./embedded/ocaml"), {
         // $.string_get_expression,
         // $.bigarray_get_expression,
         // $.coercion_expression,
-        // $.local_open_expression,
+        $.local_open_expression,
         // $.package_expression,
         // $.new_expression,
         // $.object_copy_expression,
         // $.method_invocation,
         // $.object_expression,
-        // $.parenthesized_expression,
+        $.application_expression,
+        $.infix_expression,
         // $.ocamlyacc_value,
         // $._extension
       ),
