@@ -5,14 +5,14 @@
   "main": "bindings/node",
   "types": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tree-sitter test",
     "gyp:build": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip",
     "gen": "tree-sitter generate --no-bindings",
     "build": "tree-sitter build",
     "parse": "tree-sitter parse",
     "debug": "tree-sitter parse --debug",
-    "test": "tree-sitter test"
+    "install": "node-gyp-build"
   },
   "authors": [
     "teej_dv"
