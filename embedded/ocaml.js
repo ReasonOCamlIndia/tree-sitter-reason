@@ -1,4 +1,9 @@
 // OCAML GRAMMAR
+/* eslint-disable arrow-parens */
+/* eslint-disable camelcase */
+/* eslint-disable-next-line spaced-comment */
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
 
 const PREC = {
   prefix: 19,
@@ -1193,10 +1198,10 @@ module.exports = grammar({
       prec.right(
         PREC.seq,
         seq(
-          field("left", $._expression),
+          $._expression,
           ";",
           optional(
-            seq(optional($._attribute), field("right", $._sequence_expression)),
+            seq(optional($._attribute), $._sequence_expression),
           ),
         ),
       ),
