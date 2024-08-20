@@ -63,6 +63,10 @@ module.exports = grammar(require("./embedded/ocaml"), {
         $.mutable_record_update,
       ),
 
+    // TODO: Figure out how to delete nodes, since ReasonML doesn't have structs, only modules
+    _structure: (_) => '',
+
+
     expression_statement: ($) => seq($.expression, $._semicolon),
     open_statement: ($) => seq("open", $.module_path, $._semicolon),
 
@@ -116,12 +120,11 @@ module.exports = grammar(require("./embedded/ocaml"), {
     expression: ($) =>
       choice($._expression, seq("(", $.expression, ":", $._type, ")")),
 
-    exp_open: ($) => seq($.module_path, ".", "(", $.expression, ")"),
+    local_open_expression: ($) => seq($.module_path, ".", "(", $.expression, ")"),
 
     _expression: ($) =>
       choice(
         $._simple_expression,
-        $.exp_open,
         $.sign_expression,
         // $.set_expression,
         $.if_expression,
@@ -169,6 +172,7 @@ module.exports = grammar(require("./embedded/ocaml"), {
         // $.object_copy_expression,
         // $.method_invocation,
         // $.object_expression,
+        $.local_open_expression,
         $.application_expression,
         $.infix_expression,
         // $.ocamlyacc_value,
@@ -181,9 +185,21 @@ module.exports = grammar(require("./embedded/ocaml"), {
     switch_expression: ($) =>
       seq("switch", "(", $.expression, ")", "{", repeat($._switch_case), "}"),
 
-    _switch_case: ($) => seq("|", $._pattern, "=>", $.expression),
-    // _switch_case: ($) =>
-    //   seq("|", $._pattern, "=>", choice($.block, repeat1($._statement))),
+    _switch_case: ($) =>
+      seq(
+        "|",
+        field("pattern", $._pattern),
+        "=>",
+        field("body", choice($.block, $._sequence_expression))
+      ),
+
+    sequence_expression: ($) =>
+      prec.right(PREC.seq,
+        seq(
+          $._statement,
+          optional($._sequence_expression)
+        )
+      ),
 
     _simple_pattern: ($) =>
       choice(
@@ -556,7 +572,7 @@ module.exports = grammar(require("./embedded/ocaml"), {
 
     // Copied from JS
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-    comment: ($) =>
+    comment: (_) =>
       choice(
         token(
           choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),

@@ -236,10 +236,6 @@
         "named": true
       },
       {
-        "type": "exp_open",
-        "named": true
-      },
-      {
         "type": "function_expression",
         "named": true
       },
@@ -585,6 +581,10 @@
       },
       {
         "type": "list_expression",
+        "named": true
+      },
+      {
+        "type": "local_open_expression",
         "named": true
       },
       {
@@ -955,23 +955,11 @@
           "named": true
         },
         {
-          "type": "_structure_item",
-          "named": true
-        },
-        {
           "type": "_type",
           "named": true
         },
         {
-          "type": "expression_item",
-          "named": true
-        },
-        {
           "type": "guard",
-          "named": true
-        },
-        {
-          "type": "toplevel_directive",
           "named": true
         }
       ]
@@ -1615,25 +1603,6 @@
     }
   },
   {
-    "type": "exp_open",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "module_path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -1651,25 +1620,6 @@
         },
         {
           "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expression_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_sequence_expression",
-          "named": true
-        },
-        {
-          "type": "item_attribute",
           "named": true
         }
       ]
@@ -2738,6 +2688,25 @@
     }
   },
   {
+    "type": "local_open_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "module_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "local_open_pattern",
     "named": true,
     "fields": {},
@@ -3158,21 +3127,6 @@
     "fields": {}
   },
   {
-    "type": "object_copy_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "instance_variable_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "object_expression",
     "named": true,
     "fields": {},
@@ -3270,29 +3224,6 @@
       "types": [
         {
           "type": "_binding_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "package_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_module_expression",
-          "named": true
-        },
-        {
-          "type": "_module_type",
-          "named": true
-        },
-        {
-          "type": "attribute_id",
           "named": true
         }
       ]
@@ -3787,34 +3718,37 @@
   {
     "type": "sequence_expression",
     "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_expression",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "_sequence_expression",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
-          "type": "attribute_id",
+          "type": "_sequence_expression",
+          "named": true
+        },
+        {
+          "type": "expression_statement",
+          "named": true
+        },
+        {
+          "type": "let_binding",
+          "named": true
+        },
+        {
+          "type": "module_definition",
+          "named": true
+        },
+        {
+          "type": "mutable_record_update",
+          "named": true
+        },
+        {
+          "type": "open_statement",
+          "named": true
+        },
+        {
+          "type": "type_definition",
           "named": true
         }
       ]
@@ -3950,15 +3884,36 @@
   {
     "type": "switch_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "_sequence_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "_pattern",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "_pattern",
-          "named": true
-        },
         {
           "type": "expression",
           "named": true
@@ -4026,33 +3981,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "toplevel_directive",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_constant",
-          "named": true
-        },
-        {
-          "type": "directive",
-          "named": true
-        },
-        {
-          "type": "module_path",
-          "named": true
-        },
-        {
-          "type": "value_path",
           "named": true
         }
       ]
