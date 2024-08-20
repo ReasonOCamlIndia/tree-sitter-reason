@@ -655,7 +655,7 @@ let x = Two("Hello", "World");
           (string_content))))))
 
 ================================================================================
-pattern matching literals
+pattern matching simple
 ================================================================================
 
 switch (foo) {
@@ -674,17 +674,81 @@ switch (foo) {
           (value_path
             (value_name)))
         (number)
-        (expression
-          (string
-            (string_content)))
+        (string
+          (string_content))
         (number)
-        (expression
-          (string
-            (string_content)))
+        (string
+          (string_content))
         (value_pattern)
+        (sequence_expression
+          (expression_statement
+            (expression
+              (string
+                (string_content)))))))))
+
+================================================================================
+pattern matching - block
+================================================================================
+
+switch (foo) {
+| idx => { "one" }
+| _ => "two"
+};
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (expression_statement
+    (expression
+      (switch_expression
         (expression
-          (string
-            (string_content)))))))
+          (value_path
+            (value_name)))
+        (value_pattern)
+        (block
+          (expression_statement
+            (expression
+              (string
+                (string_content)))))
+        (value_pattern)
+        (sequence_expression
+          (expression_statement
+            (expression
+              (string
+                (string_content)))))))))
+
+================================================================================
+pattern matching - sequence
+================================================================================
+
+switch (foo) {
+| 1 => let a = 10; a
+| _ => "two"
+};
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (expression_statement
+    (expression
+      (switch_expression
+        (expression
+          (value_path
+            (value_name)))
+        (number)
+        (sequence_expression
+          (let_binding
+            (value_name)
+            (expression
+              (number)))
+          (value_path
+            (value_name)))
+        (value_pattern)
+        (sequence_expression
+          (expression_statement
+            (expression
+              (string
+                (string_content)))))))))
 
 ================================================================================
 dmmulroy
